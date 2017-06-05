@@ -40,11 +40,12 @@ before_install:
 
 install:
 # Build dependencies
-- stack --no-terminal --install-ghc test --only-dependencies
+- stack setup
 
 script:
 # Build the package, its tests, and its docs and run the tests
-- stack --no-terminal test --haddock --no-haddock-deps
+
+- stack -j 1 build
 - stack exec website build
 - stack exec website check
 
